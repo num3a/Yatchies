@@ -1,4 +1,4 @@
-import React, { AppRegistry, Component, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { AppRegistry, Component, StyleSheet, Text, TextInput, View, AlertIOS } from 'react-native'
 import Button  from 'react-native-button'
 import Globals  from '../Globals'
 
@@ -13,9 +13,18 @@ class Login extends Component {
 
   }
   _onPressLoginButton(){
+    fetch("https://yatchies-api.herokuapp.com/", {method: "GET"})
+      .then((response) => response.json())
+      .then((responseData) => {
+          AlertIOS.alert(
+            "GET Response",
+            "Search Query -> " + JSON.stringify(responseData)
+          );
+      })
+      .done();
   }
   _inputOnFocus() {
-    
+
   }
 
   render() {
